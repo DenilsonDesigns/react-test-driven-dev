@@ -1,12 +1,17 @@
 import React from "react";
 import { shallow } from "enzyme";
 import App from "./App";
+import Calculator from "../Calculator/Calculator";
 
 describe("App", () => {
   let wrapper;
 
   beforeEach(() => {
     wrapper = shallow(<App />);
+  });
+
+  it("should render correctly", () => {
+    expect(wrapper).toMatchSnapshot();
   });
 
   it("should render a <div/>", () => {
@@ -17,7 +22,3 @@ describe("App", () => {
     expect(wrapper.containsMatchingElement(<Calculator />)).toEqual(true);
   });
 });
-
-// Write Calculator Shallow Rendering Test
-
-// https://testdriven.io/blog/tdd-with-react-jest-and-enzyme-part-one/#project-overview
