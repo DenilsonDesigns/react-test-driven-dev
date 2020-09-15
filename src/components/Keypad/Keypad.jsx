@@ -1,5 +1,7 @@
 import React from "react";
+import "./Keypad.css";
 import PropTypes from "prop-types";
+import Key from "../Key/Key";
 
 const Keypad = ({
   callOperator,
@@ -7,7 +9,23 @@ const Keypad = ({
   operators,
   setOperator,
   updateDisplay,
-}) => <div className="keypad-container" />;
+}) => {
+  const numberKeys = numbers.map((number) => <p key={number}>{number}</p>);
+  const operatorKeys = operators.map((operator) => (
+    <p key={operator}>{operator}</p>
+  ));
+  return (
+    <div data-test="keypad-container" className="keypad-container">
+      <div data-test="numbers-container" className="numbers-container">
+        {numberKeys}
+      </div>
+      <div data-test="operators-container" className="operators-container">
+        {operatorKeys}
+      </div>
+      <Key keyAction={callOperator} keyType="" keyValue="" />
+    </div>
+  );
+};
 
 Keypad.propTypes = {
   callOperator: PropTypes.func.isRequired,
@@ -18,3 +36,7 @@ Keypad.propTypes = {
 };
 
 export default Keypad;
+
+// https://testdriven.io/blog/tdd-with-react-jest-and-enzyme-part-two/
+
+// Key renders keyValue

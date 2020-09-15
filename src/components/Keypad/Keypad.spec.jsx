@@ -1,6 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import Keypad from "./Keypad";
+import { findByTestAttr } from "../../utils/testUtils";
 
 describe("Keypad", () => {
   let wrapper;
@@ -17,7 +18,36 @@ describe("Keypad", () => {
     );
   });
 
-  it("should render a <div />", () => {
-    expect(wrapper.find("div").length).toEqual(1);
+  test("renders keypad container without error", () => {
+    const component = findByTestAttr(wrapper, "keypad-container");
+    expect(component.length).toBe(1);
+  });
+
+  test("renders numbers container without error", () => {
+    const component = findByTestAttr(wrapper, "numbers-container");
+    expect(component.length).toBe(1);
+  });
+
+  test("renders operators container without error", () => {
+    const component = findByTestAttr(wrapper, "operators-container");
+    expect(component.length).toBe(1);
+  });
+
+  it("should render 3 <div />'s", () => {
+    expect(wrapper.find("div").length).toEqual(3);
+  });
+
+  it("renders the values of numbers", () => {
+    wrapper.setProps({ numbers: ["0", "1", "2"] });
+    expect(wrapper.find(".numbers-container").text()).toEqual("012");
+  });
+
+  it("renders the values of operators", () => {
+    wrapper.setProps({ operators: ["+", "-", "*", "/"] });
+    expect(wrapper.find(".operators-container").text()).toEqual("+-*/");
+  });
+
+  it("should render an instance of the Key component", () => {
+    expect(wrapper.find("Key").length).toEqual(1);
   });
 });
