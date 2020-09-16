@@ -10,9 +10,22 @@ const Keypad = ({
   setOperator,
   updateDisplay,
 }) => {
-  const numberKeys = numbers.map((number) => <p key={number}>{number}</p>);
+  const numberKeys = numbers.map((number) => (
+    <Key
+      key={number}
+      keyAction={updateDisplay}
+      keyType="number-key"
+      keyValue={number}
+    />
+  ));
+
   const operatorKeys = operators.map((operator) => (
-    <p key={operator}>{operator}</p>
+    <Key
+      key={operator}
+      keyAction={setOperator}
+      keyType="operator-key"
+      keyValue={operator}
+    />
   ));
   return (
     <div data-test="keypad-container" className="keypad-container">
@@ -22,7 +35,9 @@ const Keypad = ({
       <div data-test="operators-container" className="operators-container">
         {operatorKeys}
       </div>
-      <Key keyAction={callOperator} keyType="" keyValue="" />
+      <div data-test="submit-container" className="submit-container">
+        <Key keyAction={callOperator} keyType="submit-key" keyValue="=" />
+      </div>
     </div>
   );
 };
@@ -36,7 +51,3 @@ Keypad.propTypes = {
 };
 
 export default Keypad;
-
-// https://testdriven.io/blog/tdd-with-react-jest-and-enzyme-part-two/
-
-// Key renders keyValue

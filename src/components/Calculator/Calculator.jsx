@@ -6,8 +6,8 @@ import Keypad from "../Keypad/Keypad";
 export default class Calculator extends Component {
   state = {
     displayValue: "0", // value to be displayed in <Display />
-    numbers: [], // values to be displayed in number <Keys />
-    operators: [], // values to be displayed in operator <Keys />
+    numbers: ["9", "8", "7", "6", "5", "4", "3", "2", "1", ".", "0", "ce"], // values to be displayed in number <Keys />
+    operators: ["/", "x", "-", "+"], // values to be displayed in operator <Keys />
     selectedOperator: "", // operator selected for math operation
     storedValue: "", // stored value to use for math operation
   };

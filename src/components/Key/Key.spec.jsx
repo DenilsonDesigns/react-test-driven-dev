@@ -15,7 +15,21 @@ describe("Key", () => {
     expect(component.length).toBe(1);
   });
 
+  test("renders keyValue <p> without error", () => {
+    const component = findByTestAttr(wrapper, "key-value");
+    expect(component.length).toBe(1);
+  });
+
+  it("should render correctly", () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it("should render a <div />", () => {
     expect(wrapper.find("div").length).toEqual(1);
+  });
+
+  it("should render the value of keyValue", () => {
+    wrapper.setProps({ keyValue: "test" });
+    expect(wrapper.text()).toEqual("test");
   });
 });
